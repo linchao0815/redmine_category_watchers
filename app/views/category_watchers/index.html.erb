@@ -1,0 +1,38 @@
+<h2>Default Watchers for Project Categories</h2>
+
+<% if @category_watchers_array==nil || @category_watchers_array.empty? %>
+		"No categories..."   
+
+<% 	else %>
+<%= form_tag(action:'add') do %>
+<%= hidden_field_tag :project, @project.identifier %>
+
+<p>Multi selection allowed</p>
+<table style="width:100%">
+
+ <%		@category_watchers_array.each do |c| %>
+
+
+			<tr>
+				<td>
+					<%= c[:selected_users] %>
+					<%=  hidden_field_tag 'watchers_' + c[:category].id.to_s + '[]', nil %>
+					<%= c[:category].name %>
+				</td>
+				
+				<td>Watchers: <%= 
+								
+
+								select_tag 'watchers_' + c[:category].id.to_s,
+				                  content_tag('option', "--- #{l(:actionview_instancetag_blank_option)} ---", :value => '', :disabled => true) +
+				                  options_from_collection_for_select(@users, 'id', 'name', c[:category_watcher].watchers), :multiple => true, :style => "width:300px; height:150px;" %>
+
+				</td>
+			</tr>
+			<tr><td  colspan="2"><hr></td></tr>
+		<%	end %>
+
+</table>
+<%= submit_tag("Save") %>
+<%	end %>
+<%	end %>
