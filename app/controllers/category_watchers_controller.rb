@@ -63,7 +63,7 @@ class CategoryWatchersController < ApplicationController
           end
 
           cw.save
-          flash[:notice] = 'Watchers Saved' if cw.save
+          flash[:notice] = l(:watchers_saved) if cw.save
 
          
           

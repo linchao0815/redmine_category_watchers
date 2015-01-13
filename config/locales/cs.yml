@@ -1,0 +1,7 @@
+# Czech strings go here for Rails i18n
+cs:
+  category_watchers: "Sledování dle kategorií"
+  watchers_saved: "Sledování uloženo"
+  label_default_watchers: "Výchozí sledování pro kategorie projektu"
+  label_watchers: "Sledování"
+  label_multiselection_allowed: "Je možné vybrat více položek"

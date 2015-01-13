@@ -1,4 +1,4 @@
-<h2>Default Watchers for Project Categories</h2>
+<h2><%= l(:label_default_watchers) %></h2>
 
 <% if @category_watchers_array==nil || @category_watchers_array.empty? %>
 		"No categories..."   
@@ -7,7 +7,7 @@
 <%= form_tag(action:'add') do %>
 <%= hidden_field_tag :project, @project.identifier %>
 
-<p>Multi selection allowed</p>
+<p><%= l(:label_multiselection_allowed) %></p>
 <table style="width:100%">
 
  <%		@category_watchers_array.each do |c| %>
@@ -20,7 +20,7 @@
 					<%= c[:category].name %>
 				</td>
 				
-				<td>Watchers: <%= 
+				<td><%= l(:label_watchers) %>: <%= 
 								
 
 								select_tag 'watchers_' + c[:category].id.to_s,
@@ -33,6 +33,6 @@
 		<%	end %>
 
 </table>
-<%= submit_tag("Save") %>
+<%= submit_tag l(:button_save) %>
 <%	end %>
 <%	end %>

@@ -18,7 +18,7 @@ Redmine::Plugin.register :redmine_category_watchers do
 
 
    menu :project_menu, :category_watchers, { :controller => 'category_watchers', :action => 'index' }, 
-  			:caption => 'Category Watchers', :after => :wiki,
+  			:caption => :category_watchers, :after => :wiki,
   			:if => Proc.new {
     					User.current.allowed_to?(:access_category_watchers, nil, {global:true})
    			}

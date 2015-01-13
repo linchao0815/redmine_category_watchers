@@ -1,3 +1,7 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  category_watchers: "Category watchers"
+  watchers_saved: "Watchers Saved"
+  label_default_watchers: "Default Watchers for Project Categories"
+  label_watchers: "Watchers"
+  label_multiselection_allowed: "Multi selection allowed"
