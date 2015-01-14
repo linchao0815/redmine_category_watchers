@@ -1,6 +1,7 @@
 class CategoryWatchersController < ApplicationController
   unloadable
 
+  before_filter :authorize_cw, :only => [:add, :index]
 
   def index
     @project = Project.find(params[:id])
@@ -35,8 +36,6 @@ class CategoryWatchersController < ApplicationController
 
   def add
 
-    if  User.current.allowed_to?(:add_category_watchers, nil, {global:true})
-
       params.each do |key, value|
         if key.include? 'watchers_'
           category_id = key.sub('watchers_','')
@@ -65,16 +64,32 @@ class CategoryWatchersController < ApplicationController
           cw.save
           flash[:notice] = l(:watchers_saved) if cw.save
 
-         
-          
-          
         end  
-      end
     end
+
     redirect_to :action => "index", id:params[:project]
+
   end
+    
 
+  private
+  def authorize_cw
+    allowed = case params[:action].to_s
+      when "add"
+        User.current.allowed_to?(:add_category_watchers, nil, {global:true})
+      when "index"
+        User.current.allowed_to?(:access_category_watchers, nil, {global:true})
+      else
+        false
+    end
 
+    if allowed
+      true
+    else
+      deny_access
+    end
+    
+  end
 
 
 end
