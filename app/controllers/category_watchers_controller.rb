@@ -19,14 +19,10 @@ class CategoryWatchersController < ApplicationController
       if cw.nil?
         cw = CategoryWatcher.create 
         cw.watchers = " "
-      end
-
-      #get users from id and add them to cw
-      #selected_users = cw.watchers.split.map{|id| id.to_i}
-      #ids = cw.watchers.split(',')
-      #selected_users = User.where(id:ids).map{|user| user.id}
-       
-      cw.watchers = cw.watchers.split(",")
+      end      
+	  ids = cw.watchers.split(',')
+	  cw.selected_users = User.where(id:ids).map{|user| {id: user.id.to_i, name: user.name}}
+	  cw.watchers = cw.watchers.split(",")	  
       @category_watchers_array << {category_watcher:cw, category:category}
       
     end

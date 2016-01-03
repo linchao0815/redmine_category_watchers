@@ -4,4 +4,5 @@ en:
   watchers_saved: "Watchers Saved"
   label_default_watchers: "Default Watchers for Project Categories"
   label_watchers: "Watchers"
-  label_multiselection_allowed: "Multi selection allowed"
+  label_multiselection_allowed: "Use the CTRL key to select or deselect watchers"
+  label_current_watchers: "Current Watchers"

@@ -10,26 +10,32 @@
 <p><%= l(:label_multiselection_allowed) %></p>
 <table style="width:100%">
 
- <%		@category_watchers_array.each do |c| %>
-
-
-			<tr>
-				<td>
-					<%= c[:selected_users] %>
-					<%=  hidden_field_tag 'watchers_' + c[:category].id.to_s + '[]', nil %>
+	<% @category_watchers_array.each do |c| %>
+			<tr>	
+				<td>							
+					<%= hidden_field_tag 'watchers_' + c[:category].id.to_s + '[]', nil %>
 					<%= c[:category].name %>
+				</td>				
+				<td>
+					<%= l(:label_watchers) %>: </br>
+					<%= select_tag 'watchers_' + c[:category].id.to_s,
+						content_tag('option', "--- #{l(:actionview_instancetag_blank_option)} ---", :value => '', :disabled => true) +
+						options_from_collection_for_select(@users, 'id', 'name', 
+																	c[:category_watcher].selected_users.map{|w| w[:id]}), 
+																	:multiple => true, :style => "width:300px; height:150px;" %>
 				</td>
-				
-				<td><%= l(:label_watchers) %>: <%= 
-								
-
-								select_tag 'watchers_' + c[:category].id.to_s,
-				                  content_tag('option', "--- #{l(:actionview_instancetag_blank_option)} ---", :value => '', :disabled => true) +
-				                  options_from_collection_for_select(@users, 'id', 'name', c[:category_watcher].watchers), :multiple => true, :style => "width:300px; height:150px;" %>
-
+				<td>
+					<%= l(:label_current_watchers) %>: </br>
+					<div class="box">
+						<%= textilizable (c[:category_watcher].selected_users.map{|w| w[:name]} * "\n") %>
+					</div>
 				</td>
 			</tr>
-			<tr><td  colspan="2"><hr></td></tr>
+			<tr>
+				<td  colspan="3">
+					<hr>
+				</td>
+			</tr>
 		<%	end %>
 
 </table>

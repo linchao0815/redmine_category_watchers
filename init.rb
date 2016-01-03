@@ -2,9 +2,10 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_category_watchers do
   name 'Redmine Categorys Watcher plugin'
-  author 'Luis Fontes <mail.fontes@gmail.com>'
+  author 'Luis Fontes <mail.fontes@gmail.com> & BSII - CSI Team'
   description 'This is a plugin for Redmine to add automaticlly add watchers by category'
-  version '0.0.1'
+  version '0.0.2'
+  
   #url 'http://example.com/path/to/plugin'
   #author_url 'http://example.com/about'
 
