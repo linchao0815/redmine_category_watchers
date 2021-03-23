@@ -1,7 +1,7 @@
 class CategoryWatchersController < ApplicationController
   unloadable
 
-  before_filter :authorize_cw, :only => [:add, :index]
+  before_action :authorize_cw, :only => [:add, :index]
 
   def index
     @project = Project.find(params[:id])
